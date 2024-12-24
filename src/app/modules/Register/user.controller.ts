@@ -4,7 +4,6 @@ import { RegisterServices } from "./user.service";
 
 const createUserIntoDB = catchAsync(async (req, res) => {
   const result = await RegisterServices.registerIntoDB(req.body);
-  console.log(result, "result");
   sendResponse(res, {
     statusCode: 200,
     success: true,
@@ -15,7 +14,6 @@ const createUserIntoDB = catchAsync(async (req, res) => {
 const updateIsDeletedController = catchAsync(async (req, res) => {
   const { userId } = req.params;
   const { isDeleted } = req.body;
-  console.log(userId);
 
   const result = await RegisterServices.updateIsDeleted(userId, isDeleted);
 

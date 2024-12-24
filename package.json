@@ -27,7 +27,6 @@
     "@types/express": "^5.0.0",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/node": "^22.10.2",
-    "@types/ws": "^8.5.13",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.7.2"
   }

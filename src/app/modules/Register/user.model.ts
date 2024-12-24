@@ -35,6 +35,7 @@ const userRegistrationSchema = new Schema<TUserRegistration>({
     required: true,
   },
 });
+
 userRegistrationSchema.pre("save", async function (next) {
   const user = this;
   user.password = await bcrypt.hash(
