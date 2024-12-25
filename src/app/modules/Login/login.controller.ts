@@ -24,7 +24,6 @@ const loginUser = catchAsync(async (req, res) => {
 });
 const searchUsers = catchAsync(async (req, res) => {
   const { searchUser } = req.query; // Get `searchUser` from query parameters
-  console.log(searchUser);
 
   // Call the search service
   const users = await LoginServices.searchUsersService(searchUser as string);
