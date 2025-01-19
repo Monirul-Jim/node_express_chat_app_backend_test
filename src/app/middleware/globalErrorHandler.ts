@@ -18,6 +18,7 @@
 //   });
 // };
 // export default globalErrorHandler;
+
 import { ErrorRequestHandler } from "express";
 import AppError from "../errors/AppError";
 import { TErrorSource } from "../../interface/error";
