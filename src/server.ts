@@ -8,7 +8,7 @@ import Message from "./app/routes/socket.model";
 let httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: ["http://localhost:5173"],
+    origin: ["https://node-express-chat-app-frontend-test.onrender.com"],
     methods: ["GET", "POST"],
     credentials: true,
   },
