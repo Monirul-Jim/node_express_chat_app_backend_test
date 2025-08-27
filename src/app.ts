@@ -8,7 +8,8 @@ const app: Application = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["https://node-express-chat-app-frontend-test.onrender.com"],
+    origin: ["http://localhost:5173"],
+    // origin: ["https://node-express-chat-app-frontend-test.onrender.com"],
     credentials: true,
   })
 );
