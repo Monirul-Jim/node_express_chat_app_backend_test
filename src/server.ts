@@ -10,7 +10,7 @@ import cloudinary from "./app/utils/cloudinary";
 let httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: ["http://localhost:5173"],
+    origin: ["https://chatapp-rust-pi.vercel.app"],
     // origin: ["https://node-express-chat-app-frontend-test.onrender.com"],
     methods: ["GET", "POST"],
     credentials: true,
