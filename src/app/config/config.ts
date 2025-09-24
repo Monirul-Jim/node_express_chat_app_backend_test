@@ -10,7 +10,7 @@ export default {
   jwt_refresh_secret: process.env.JWT_REFRESH_SECRET,
   jwt_refresh_expires_in: process.env.JWT_REFRESH_EXPIRES_IN,
   node_env: process.env.NODE_ENV,
-  agora_app_id:process.env.AGORA_APP_ID,
-  agora_app_certificate:process.env.AGORA_APP_CERTIFICATE,
-  agora_token_expires:process.env.AGORA_TOKEN_EXPIRES
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 };

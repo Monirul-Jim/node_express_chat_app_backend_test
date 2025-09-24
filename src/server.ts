@@ -4,6 +4,8 @@ import { Server } from "socket.io";
 import app from "./app";
 import config from "./app/config/config";
 import Message from "./app/routes/socket.model";
+import { registerUploadHandlers } from "./app/middleware/upload";
+import cloudinary from "./app/utils/cloudinary";
 
 let httpServer = createServer(app);
 const io = new Server(httpServer, {
@@ -42,6 +44,31 @@ async function main() {
           });
         }
       });
+      // registerUploadHandlers(socket);
+      socket.on(
+        "upload_file",
+        async ({ fileBuffer, mimetype, fileName }, callback) => {
+          try {
+            const base64File = Buffer.from(fileBuffer).toString("base64");
+            const dataUri = `data:${mimetype};base64,${base64File}`;
+
+            const uploadResponse = await cloudinary.uploader.upload(dataUri, {
+              folder: "chat_uploads",
+              resource_type: "auto",
+              public_id: `${Date.now()}_${fileName}`,
+            });
+
+            callback({
+              success: true,
+              url: uploadResponse.secure_url,
+              type: mimetype,
+              publicId: uploadResponse.public_id,
+            });
+          } catch (error: any) {
+            callback({ success: false, error: error.message });
+          }
+        }
+      );
 
       // Handle "offer" event for video/audio calls
       socket.on("offer", ({ offer, recipientId }) => {
@@ -79,6 +106,9 @@ async function main() {
             recipient: data.recipient,
             text: data.text,
             audioUrl: data.audioUrl,
+            fileUrl: data.fileUrl || null,
+            fileType: data.fileType || null,
+            publicId: data.publicId || null,
           });
           await newMessage.save();
 
@@ -170,7 +200,6 @@ async function main() {
           }
         }
       });
-
     });
   } catch (error) {
     console.error("Error starting server:", error);
